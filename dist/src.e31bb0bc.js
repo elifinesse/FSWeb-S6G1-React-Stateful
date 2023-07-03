@@ -29369,7 +29369,7 @@ function Programcilar() {
     _useState2 = _slicedToArray(_useState, 2),
     programcilar = _useState2[0],
     setProgramcilar = _useState2[1];
-  var _useState3 = (0, _react.useState)(null),
+  var _useState3 = (0, _react.useState)(""),
     _useState4 = _slicedToArray(_useState3, 2),
     oneCikan = _useState4[0],
     setOneCikan = _useState4[1];
@@ -29379,11 +29379,15 @@ function Programcilar() {
     // Öne çıkan geliştiricinin _isim_ adını döndürmek için her iki state dilimini kullanacak.
     // Closureların güzelliği, argümanlar yoluyla bilgi enjekte etmeye gerek kalmadan programın
     // bu bölgesinden her iki state dilimini de "görebilmemiz"dir.
+    var programci = programcilar.find(function (dev) {
+      return dev.id === oneCikan;
+    });
+    return programci.isim;
   };
   var stil = {
     fontSize: "1.5em",
     marginTop: "0.5em",
-    color: "royalblue" // 🤔 kutlarken renk gold'a dönecek
+    color: oneCikan ? "gold" : "royalblue" // 🤔 kutlarken renk gold'a dönecek
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -29395,13 +29399,14 @@ function Programcilar() {
   // Şöyle diyebiliriz: "aa bu çalışıyor!" Ama programcilar bir state diliminden gelmiyorsa,
   // asla yeni programci ekleyemeyiz, programcilari düzenleyemeyiz ya da silemeyiz. Düzeltin!
   " */
-  enIyilerListesi.map(function (dev) {
+  programcilar.map(function (dev) {
     return /*#__PURE__*/_react.default.createElement("div", {
       className: "programmer",
       key: dev.id
     }, dev.isim, " ", /*#__PURE__*/_react.default.createElement("button", {
       onClick: function onClick() {
         /* burada dev.id 'yi öne çıkan id'ye atayın */
+        setOneCikan(dev.id);
       }
     }, "Kutla"));
   })), /*#__PURE__*/_react.default.createElement("div", {
@@ -29411,7 +29416,7 @@ function Programcilar() {
   // Üçlüler, bir şeyin "gerçekliğine" bağlı olarak "bir şeyi veya diğerini" ifade etmek için harikadır..
   // Sözde-kod: öne çıkan true ise metin 1'i oluşturun, aksi takdirde metin 2'yi oluşturun..
   // Sabit kodlanmış false'u doğru değişkenle değiştirin.
-  false ? "\uD83C\uDF89 Hadi ".concat(oneCikaninIsmi(), "'\u0131 kutlayal\u0131m! \uD83E\uDD73") : "Harika bir programcı seçin"));
+  oneCikan ? "\uD83C\uDF89 Hadi ".concat(oneCikaninIsmi(), "'\u0131 kutlayal\u0131m! \uD83E\uDD73") : "Harika bir programcı seçin"));
 }
 },{"react":"../node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
